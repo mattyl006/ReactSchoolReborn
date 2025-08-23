@@ -14,7 +14,9 @@ export default {
       colors: {
         primary: "var(--color-primary)",
         secondary: "var(--color-secondary)",
-        "matt-blue": "#1E90FF",
+        blue: "#1ea7fd",
+        green: "#1bcb43",
+        red: "#fd1e31",
       },
       maxWidth: {
         content: "1440px",

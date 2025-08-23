@@ -1,26 +1,28 @@
 import React, { ComponentProps } from "react";
-import { ButtonSizeStyle } from "./ButtonSizeStyle";
+import { ButtonSize } from "./ButtonSize";
 import { cn } from "../../utils/cn";
 
+enum ButtonMode {
+  Primary = "text-white bg-[#1ea7fd]",
+  Secondary = "bg-transparent text-[#333] shadow-[rgba(0,_0,_0,_0.15)_0px_0px_0px_1px_inset]",
+}
+
 type ButtonProps = {
-  primary?: boolean;
   backgroundColor?: string;
-  size?: ButtonSizeStyle;
+  size?: ButtonSize;
+  mode?: ButtonMode;
   label: string;
 } & ComponentProps<"button">;
 
 /** Primary UI component for user interaction */
 const Button: React.FC<ButtonProps> = ({
-  primary = false,
-  size = ButtonSizeStyle.MEDIUM,
+  size = ButtonSize.MEDIUM,
+  mode = ButtonMode.Primary,
   className,
   disabled,
   label,
   ...props
 }): JSX.Element => {
-  const mode = primary
-    ? "text-white bg-[#1ea7fd]"
-    : "bg-transparent text-[#333] shadow-[rgba(0,_0,_0,_0.15)_0px_0px_0px_1px_inset]";
   return (
     <button
       {...props}

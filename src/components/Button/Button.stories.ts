@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
 import Button from ".";
-import { ButtonSizeStyle } from "./ButtonSizeStyle";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -25,52 +24,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
-  args: {
-    primary: true,
-    label: "Button",
-  },
-};
-
-export const Secondary: Story = {
+export const Blue: Story = {
   args: {
     label: "Button",
   },
 };
 
-export const Large: Story = {
+export const Green: Story = {
   args: {
-    size: ButtonSizeStyle.LARGE,
     label: "Button",
+    className: "bg-green",
   },
 };
 
-export const Small: Story = {
+export const Red: Story = {
   args: {
-    size: ButtonSizeStyle.SMALL,
     label: "Button",
-  },
-};
-
-export const PrimaryLarge: Story = {
-  args: {
-    primary: true,
-    label: "Button",
-    size: ButtonSizeStyle.LARGE,
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-    label: "Disabled button",
-  },
-};
-
-export const BlueHover: Story = {
-  args: {
-    label: "Button with blue hover",
-    className: "hover:bg-blue-400",
+    className: "bg-red",
   },
 };
