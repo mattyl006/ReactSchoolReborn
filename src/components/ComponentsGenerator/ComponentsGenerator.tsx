@@ -2,6 +2,8 @@ import React from "react";
 import Header from "../Header";
 import { HeaderType } from "../Header/enums/HeaderType";
 import Button from "../Button";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 type ComponentsGeneratorProps = {
   className?: string;
@@ -9,6 +11,10 @@ type ComponentsGeneratorProps = {
 
 const modules: Record<string, { default: React.ComponentType<unknown> }> =
   import.meta.glob("../../components/**/*.tsx", { eager: true });
+const codes = import.meta.glob("../../components/**/*.tsx", {
+  as: "raw",
+  eager: true,
+});
 
 const components: {
   name: string;
@@ -24,25 +30,33 @@ const ComponentsGenerator: React.FC<ComponentsGeneratorProps> = (props) => {
   const [propsInputValue, setPropsInputValue] = React.useState("");
   const [mappedProps, setMappedProps] = React.useState({});
 
+  console.log(codes);
+  console.log(selected);
+
   return (
     <div className={props.className}>
       <Header type={HeaderType.H2} className="text-3xl font-bold text-blue-500">
         Component Generator
       </Header>
 
-      <select
-        value={selected.name}
-        onChange={(e) =>
-          setSelected(components.find((c) => c.name === e.target.value)!)
-        }
-        className="w-fit"
-      >
-        {components.map((c) => (
-          <option key={c.name} value={c.name}>
-            {c.name}
-          </option>
-        ))}
-      </select>
+      <div className="flex flex-col gap-[16px] w-fit">
+        <label htmlFor="selectComponent">Choose component:</label>
+        <select
+          id="selectComponent"
+          name="selectComponent"
+          value={selected.name}
+          onChange={(e) =>
+            setSelected(components.find((c) => c.name === e.target.value)!)
+          }
+          className="w-fit"
+        >
+          {components.map((c) => (
+            <option key={c.name} value={c.name}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div className="flex flex-col gap-[16px] w-fit">
         <label htmlFor="propsInput">Props for component</label>
@@ -70,9 +84,14 @@ const ComponentsGenerator: React.FC<ComponentsGeneratorProps> = (props) => {
         </Button>
       </div>
 
-      <section className="flex flex-col gap-[24px] border-2 rounded-[16px] border-blue p-[16px]">
+      <section className="flex flex-col gap-[20px]">
         <Header type={HeaderType.H3}>Component {selected.name}</Header>
         {<selected.Component {...mappedProps} />}
+      </section>
+
+      <section className="flex flex-col gap-[20px]">
+        <Header type={HeaderType.H3}>Source Code</Header>
+        <SyntaxHighlighter>{codes[selected.path]}</SyntaxHighlighter>
       </section>
     </div>
   );
