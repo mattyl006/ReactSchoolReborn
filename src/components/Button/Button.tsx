@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
       type="button"
       onClick={(e) => (props.onClick && !disabled ? props.onClick(e) : null)}
       className={cn(
-        `inline-block cursor-pointer border-0 rounded-[3em] font-bold leading-1
+        `inline-block cursor-pointer border-0 rounded-[3em] font-bold leading-1 w-fit
          ${size} ${mode}`,
         className,
         { "hover:transparent bg-slate-400 cursor-auto": disabled }
