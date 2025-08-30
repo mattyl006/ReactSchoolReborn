@@ -9,9 +9,10 @@ type ComponentsGeneratorProps = {
 };
 
 const modules: Record<string, { default: React.ComponentType<unknown> }> =
-  import.meta.glob("../../components/**/*.tsx", { eager: true });
+  import.meta.glob("../../components/*/*.tsx", { eager: true });
 const codes = import.meta.glob("../../components/**/*.tsx", {
-  as: "raw",
+  query: "?raw",
+  import: "default",
   eager: true,
 });
 
@@ -28,6 +29,9 @@ const ComponentsGenerator: React.FC<ComponentsGeneratorProps> = (props) => {
   const [selected, setSelected] = React.useState(components[0]);
   const [propsInputValue, setPropsInputValue] = React.useState("");
   const [mappedProps, setMappedProps] = React.useState({});
+
+  console.log(modules);
+  console.log(components);
 
   return (
     <div className={props.className}>
