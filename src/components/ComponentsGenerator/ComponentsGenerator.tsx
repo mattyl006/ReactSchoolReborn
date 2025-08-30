@@ -3,7 +3,6 @@ import Header from "../Header";
 import { HeaderType } from "../Header/enums/HeaderType";
 import Button from "../Button";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 type ComponentsGeneratorProps = {
   className?: string;
@@ -29,9 +28,6 @@ const ComponentsGenerator: React.FC<ComponentsGeneratorProps> = (props) => {
   const [selected, setSelected] = React.useState(components[0]);
   const [propsInputValue, setPropsInputValue] = React.useState("");
   const [mappedProps, setMappedProps] = React.useState({});
-
-  console.log(codes);
-  console.log(selected);
 
   return (
     <div className={props.className}>
