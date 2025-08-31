@@ -2,6 +2,7 @@ import React from "react";
 import FormWizardFields from "./components/FormWizardFields";
 import FormWizardSummary from "./components/FormWizardSummary";
 import Button from "../Button";
+import { cn } from "../../utils/cn";
 
 type FormWizardProps = { className?: string };
 
@@ -19,6 +20,8 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
   const [birthday, setBirthday] = React.useState("");
   const [hobby, setHobby] = React.useState("");
 
+  const buttonsMargin: string = "m-[16px_16px_0_0]";
+
   const renderStage = () => {
     switch (stage) {
       case FormWizardStage.First:
@@ -33,6 +36,7 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
             <Button
               onClick={() => setStage(FormWizardStage.Second)}
               label="Next stage"
+              className={buttonsMargin}
             />
           </>
         );
@@ -48,10 +52,12 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
             <Button
               onClick={() => setStage(FormWizardStage.First)}
               label="Previous stage"
+              className={buttonsMargin}
             />
             <Button
               onClick={() => setStage(FormWizardStage.Third)}
               label="Next stage"
+              className={buttonsMargin}
             />
           </>
         );
@@ -69,17 +75,21 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
             <Button
               onClick={() => setStage(FormWizardStage.Second)}
               label="Previous stage"
+              className={buttonsMargin}
             />
             <Button
               onClick={() => console.log([name, surname, birthday, hobby])}
               label="Confirm"
+              className={buttonsMargin}
             />
           </>
         );
     }
   };
 
-  return <form className={props.className}>{renderStage()}</form>;
+  return (
+    <form className={cn("p-[4px]", props.className)}>{renderStage()}</form>
+  );
 };
 
 export default FormWizard;

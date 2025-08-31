@@ -15,11 +15,13 @@ type FormWizardSummaryProps = {
 const FormWizardSummary: React.FC<FormWizardSummaryProps> = (props) => {
   return (
     <section className={props.className}>
-      <Header type={HeaderType.H3}>Summary</Header>
-      <ol>
+      <Header className="m-[0_0_16px_0]" type={HeaderType.H3}>
+        Summary
+      </Header>
+      <ol className="flex flex-col gap-[8px] m-[0_0_8px_0]">
         {props.fields.map((field, i) => (
-          <li key={`summaryItem-${field.name}-${i}`}>
-            <Text>{field.name}:</Text>
+          <li className="flex gap-[6px]" key={`summaryItem-${field.name}-${i}`}>
+            <Text className="font-bold">{field.name}:</Text>
             <Text>{field.state}</Text>
           </li>
         ))}
