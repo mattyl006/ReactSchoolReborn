@@ -3,6 +3,8 @@ import FormWizardFields from "./components/FormWizardFields";
 import FormWizardSummary from "./components/FormWizardSummary";
 import Button from "../Button";
 import { cn } from "../../utils/cn";
+import { historyItemSchema, InputHistoryItem } from "./types";
+import z from "zod";
 
 type FormWizardProps = { className?: string };
 
@@ -20,7 +22,9 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
   const [birthday, setBirthday] = React.useState("");
   const [hobby, setHobby] = React.useState("");
 
-  const buttonsMargin: string = "m-[16px_16px_0_0]";
+  const [nameHistory, setNameHistory] = React.useState<InputHistoryItem[]>([]);
+
+  const buttonsMargin: string = "m-[16px_16px_16px_0]";
 
   const renderStage = () => {
     switch (stage) {
@@ -29,7 +33,12 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
           <>
             <FormWizardFields
               fields={[
-                { state: name, setState: setName, name: "name" },
+                {
+                  state: name,
+                  setState: setName,
+                  name: "name",
+                  historySetState: setNameHistory,
+                },
                 { state: surname, setState: setSurname, name: "surname" },
               ]}
             />
@@ -77,18 +86,27 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
               label="Previous stage"
               className={buttonsMargin}
             />
-            <Button
-              onClick={() => console.log([name, surname, birthday, hobby])}
-              label="Confirm"
-              className={buttonsMargin}
-            />
+            <Button type="submit" label="Confirm" className={buttonsMargin} />
           </>
         );
     }
   };
 
   return (
-    <form className={cn("p-[4px]", props.className)}>{renderStage()}</form>
+    <form
+      onSubmit={() => console.log([name, surname, birthday, hobby])}
+      className={cn(
+        "p-[4px] flex flex-col text-wrap max-w-[1000px]",
+        props.className
+      )}
+    >
+      {renderStage()}
+      {z.safeParse(z.array(historyItemSchema), nameHistory).success
+        ? nameHistory.map(
+            (i) => `(${i.field}, ${i.timestamp.toLocaleString()}) `
+          )
+        : null}
+    </form>
   );
 };
 
