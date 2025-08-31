@@ -8,6 +8,7 @@ type FormWizardFieldsProps = {
     state: string;
     name: string;
     setState: React.Dispatch<React.SetStateAction<string>>;
+    historyState?: InputHistoryItem[];
     historySetState?: React.Dispatch<React.SetStateAction<InputHistoryItem[]>>;
   }[];
   className?: string;
@@ -27,7 +28,14 @@ const FormWizardFields: React.FC<FormWizardFieldsProps> = (props) => {
             name={field.name}
             value={field.state}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              if (field?.historySetState && e.target.value) {
+              field.setState(e.target.value);
+            }}
+            onBlur={(e) => {
+              if (
+                field?.historySetState &&
+                field?.historyState &&
+                e.target.value
+              ) {
                 const newItem: InputHistoryItem = {
                   field: e.target.value,
                   timestamp: new Date(),
@@ -35,12 +43,14 @@ const FormWizardFields: React.FC<FormWizardFieldsProps> = (props) => {
                 const result = z.safeParse(historyItemSchema, newItem);
                 if (!result.success) {
                   alert("Adding to input history error!");
+                  if (field.historyState?.length) {
+                    const lastHistoryItem: string =
+                      field.historyState.pop()!.field;
+                    field.setState(lastHistoryItem);
+                  }
                 } else {
-                  field.setState(e.target.value);
                   field.historySetState((prev) => [...prev, newItem]);
                 }
-              } else {
-                field.setState(e.target.value);
               }
             }}
           />

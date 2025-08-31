@@ -37,6 +37,7 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
                   state: name,
                   setState: setName,
                   name: "name",
+                  historyState: nameHistory,
                   historySetState: setNameHistory,
                 },
                 { state: surname, setState: setSurname, name: "surname" },
