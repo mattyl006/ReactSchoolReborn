@@ -11,7 +11,6 @@ type ButtonProps = {
   backgroundColor?: string;
   size?: ButtonSize;
   mode?: ButtonMode;
-  label: string;
 } & ComponentProps<"button">;
 
 /** Primary UI component for user interaction */
@@ -20,13 +19,11 @@ const Button: React.FC<ButtonProps> = ({
   mode = ButtonMode.Primary,
   className,
   disabled,
-  label,
   ...props
 }): JSX.Element => {
   return (
     <button
       {...props}
-      type="button"
       onClick={(e) => (props.onClick && !disabled ? props.onClick(e) : null)}
       className={cn(
         `inline-block cursor-pointer border-0 rounded-[3em] font-bold leading-1 w-fit
@@ -35,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
         { "hover:transparent bg-slate-400 cursor-auto": disabled }
       )}
     >
-      {label}
+      {props.children}
     </button>
   );
 };

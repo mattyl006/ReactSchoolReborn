@@ -30,9 +30,6 @@ const ComponentsGenerator: React.FC<ComponentsGeneratorProps> = (props) => {
   const [propsInputValue, setPropsInputValue] = React.useState("");
   const [mappedProps, setMappedProps] = React.useState({});
 
-  console.log(modules);
-  console.log(components);
-
   return (
     <div className={props.className}>
       <Header type={HeaderType.H2} className="text-3xl font-bold text-blue-500">
@@ -70,7 +67,6 @@ const ComponentsGenerator: React.FC<ComponentsGeneratorProps> = (props) => {
           }
         />
         <Button
-          label="Props confirm"
           onClick={() => {
             try {
               const newMappedProps = JSON.parse(propsInputValue);

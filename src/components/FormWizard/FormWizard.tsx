@@ -45,9 +45,10 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
             />
             <Button
               onClick={() => setStage(FormWizardStage.Second)}
-              label="Next stage"
               className={buttonsMargin}
-            />
+            >
+              Next stage
+            </Button>
           </>
         );
       case FormWizardStage.Second:
@@ -61,14 +62,16 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
             />
             <Button
               onClick={() => setStage(FormWizardStage.First)}
-              label="Previous stage"
               className={buttonsMargin}
-            />
+            >
+              Previous stage
+            </Button>
             <Button
               onClick={() => setStage(FormWizardStage.Third)}
-              label="Next stage"
               className={buttonsMargin}
-            />
+            >
+              Next stage
+            </Button>
           </>
         );
       case FormWizardStage.Third:
@@ -84,10 +87,13 @@ const FormWizard: React.FC<FormWizardProps> = (props) => {
             />
             <Button
               onClick={() => setStage(FormWizardStage.Second)}
-              label="Previous stage"
               className={buttonsMargin}
-            />
-            <Button type="submit" label="Confirm" className={buttonsMargin} />
+            >
+              Previous stage
+            </Button>
+            <Button type="submit" className={buttonsMargin}>
+              Confirm
+            </Button>
           </>
         );
     }
