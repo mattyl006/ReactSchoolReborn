@@ -17,7 +17,11 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const DynamicForm: React.FC<DynamicFormProps> = (props) => {
-  const { register, handleSubmit } = useForm<FormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
@@ -33,13 +37,18 @@ const DynamicForm: React.FC<DynamicFormProps> = (props) => {
       onSubmit={handleSubmit(onSubmit)}
       className={cn("flex flex-col gap-[12px]", props.className)}
     >
-      <Input {...register("email")} label="email" />
-      <Input {...register("name")} label="name" />
+      <Input
+        {...register("email")}
+        label="email"
+        error={errors.email?.message}
+      />
+      <Input {...register("name")} label="name" error={errors.name?.message} />
       {hobbies.map((hobby, index) => (
         <div key={`hobby-${hobby}`} className="flex gap-2 items-center">
           <Input
             {...register(`hobbies.${index}`)}
             label={`hobby ${index + 1}`}
+            error={errors.hobbies?.[index]?.message}
           />
           <Button
             type="button"
