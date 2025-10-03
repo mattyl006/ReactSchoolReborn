@@ -1,15 +1,14 @@
 import React from "react";
-import useViewPort from "./useViewPort";
-import { IViewPortSize } from "./types";
+import useViewPort, { IViewPortSize } from "../../hooks/useViewPort";
 
 type ViewPortProps = { className?: string };
 
 const ViewPort: React.FC<ViewPortProps> = (props) => {
-  const size: IViewPortSize = useViewPort();
+  const { x, y }: IViewPortSize = useViewPort();
   return (
     <div className={props.className}>
       <p>
-        X: {size.x} Y: {size.y}
+        X: {x} Y: {y}
       </p>
     </div>
   );
