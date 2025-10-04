@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import React from "react";
+import IsLoggedInfo from "../IsLoggedInfo";
 
 type AuthCredentialsProps = { className?: string };
 
 const AuthCredentials: React.FC<AuthCredentialsProps> = (props) => {
-  const { isLogged } = useContext(AuthContext);
+  console.log("AuthCredentials rendered");
 
   return (
     <div className={props.className}>
-      <p>Is user logged? {isLogged ? "YES" : "NO"}</p>
+      <p>Name: Matthew</p>
+      <p>Surname: Powerful</p>
+      <IsLoggedInfo />
     </div>
   );
 };

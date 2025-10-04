@@ -1,9 +1,15 @@
 import { createContext } from "react";
 
-const defaultValues = {
-  isLogged: false,
+type IAuthContext = {
+  isLogged: boolean;
+  toggleIsLogged: () => void;
 };
 
-type IAuthContext = typeof defaultValues;
+const defaultValues = {
+  isLogged: false,
+  toggleIsLogged: () => null,
+};
 
 export const AuthContext = createContext<IAuthContext>(defaultValues);
+
+AuthContext.displayName = "AuthContext";
