@@ -8,14 +8,7 @@ type IAuthContext = {
   logOut: () => void;
 };
 
-const defaultValues = {
-  isLogged: false,
-  toggleIsLogged: () => null,
-  logIn: () => null,
-  logOut: () => null,
-};
-
-export const AuthContext: React.Context<IAuthContext> =
-  createContext<IAuthContext>(defaultValues);
+export const AuthContext: React.Context<IAuthContext | null> =
+  createContext<IAuthContext | null>(null);
 
 AuthContext.displayName = "AuthContext";

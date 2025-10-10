@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import React from "react";
 import Button from "../Button";
+import useAuthContext from "../../hooks/useAuthContext";
 
 type IsLoggedInfoProps = { className?: string };
 
 const IsLoggedInfo: React.FC<IsLoggedInfoProps> = (props) => {
-  const { isLogged, toggleIsLogged, logIn, logOut } = useContext(AuthContext);
+  const { isLogged, toggleIsLogged, logIn, logOut } = useAuthContext();
 
   console.log("IsLoggedInfo rendered");
 
