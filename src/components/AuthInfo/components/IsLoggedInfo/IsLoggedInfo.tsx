@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../Button";
-import useAuthContext from "../../hooks/useAuthContext";
+import Button from "../../../Button";
+import useAuthContext from "../../../../hooks/useAuthContext";
 
 type IsLoggedInfoProps = { className?: string };
 

@@ -1,5 +1,7 @@
+import { useState } from "react";
+
 const useAuth = () => {
-  const [logged, setIsLogged] = React.useState(false);
+  const [logged, setIsLogged] = useState(false);
   const toggleIsLogged = () => setIsLogged((v) => !v);
   const logIn = () => setIsLogged(true);
   const logOut = () => setIsLogged(false);
