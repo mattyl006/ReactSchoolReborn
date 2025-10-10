@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import React from "react";
 
 type IAuthContext = {
   isLogged: boolean;
@@ -10,6 +11,7 @@ const defaultValues = {
   toggleIsLogged: () => null,
 };
 
-export const AuthContext = createContext<IAuthContext>(defaultValues);
+export const AuthContext: React.Context<IAuthContext> =
+  createContext<IAuthContext>(defaultValues);
 
 AuthContext.displayName = "AuthContext";
