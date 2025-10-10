@@ -5,7 +5,7 @@ import Button from "../Button";
 type IsLoggedInfoProps = { className?: string };
 
 const IsLoggedInfo: React.FC<IsLoggedInfoProps> = (props) => {
-  const { isLogged, toggleIsLogged } = useContext(AuthContext);
+  const { isLogged, toggleIsLogged, logIn, logOut } = useContext(AuthContext);
 
   console.log("IsLoggedInfo rendered");
 
@@ -13,6 +13,8 @@ const IsLoggedInfo: React.FC<IsLoggedInfoProps> = (props) => {
     <div className={props.className}>
       <p>Is user logged? {isLogged ? "YES" : "NO"}</p>
       <Button onClick={toggleIsLogged}>Toggle isLoggedIn</Button>
+      <Button onClick={logIn}>Log In</Button>
+      <Button onClick={logOut}>Log Out</Button>
     </div>
   );
 };
