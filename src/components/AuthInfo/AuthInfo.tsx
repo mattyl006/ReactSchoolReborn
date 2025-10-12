@@ -5,6 +5,7 @@ import { HeaderType } from "../Header/enums/HeaderType";
 import { cn } from "../../utils/cn";
 import { AuthContextProvider } from "../../contexts/AuthContext/AuthContextProvider";
 import ThemeContextProvider from "../../contexts/ThemeContext/ThemeContextProvider";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 type AuthInfoProps = { className?: string };
 
@@ -17,6 +18,7 @@ const AuthInfo: React.FC<AuthInfoProps> = (props) => {
         <div className={cn(props.className, "flex flex-col gap-4")}>
           <Header type={HeaderType.H2}>Auth Info</Header>
           <AuthCredentials />
+          <ThemeSwitcher />
         </div>
       </AuthContextProvider>
     </ThemeContextProvider>
