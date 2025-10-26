@@ -1,15 +1,21 @@
 import React from "react";
 import useThemeContext from "../../../../hooks/useThemeContext";
 import Button from "../../../Button";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { ThemeEnum } from "../../../../contexts/ThemeContext/ThemeContext";
 
 type ThemeSwitcherProps = { className?: string };
 
 const ThemeSwitcher: React.FC<ThemeSwitcherProps> = (props) => {
-  const { toggle } = useThemeContext();
+  const { toggle, theme } = useThemeContext();
 
   return (
     <Button onClick={toggle} className={props.className}>
-      Theme Switcher
+      {theme.current === ThemeEnum.LIGHT ? (
+        <MoonIcon className="w-6 h-6" />
+      ) : (
+        <SunIcon className="w-6 h-6" />
+      )}
     </Button>
   );
 };

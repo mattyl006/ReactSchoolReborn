@@ -6,7 +6,7 @@ export enum ThemeEnum {
 }
 
 type IThemeContext = {
-  theme: ThemeEnum;
+  theme: React.MutableRefObject<ThemeEnum>;
   toggle: () => void;
 };
 

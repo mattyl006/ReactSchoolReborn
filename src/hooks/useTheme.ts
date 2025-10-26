@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { ThemeEnum } from "../contexts/ThemeContext/ThemeContext";
 
 const useTheme = () => {
-  const [theme, setTheme] = useState(ThemeEnum.LIGHT);
+  const theme: React.MutableRefObject<ThemeEnum> = useRef<ThemeEnum>(
+    ThemeEnum.LIGHT
+  );
   const toggle = () => {
-    if (theme === ThemeEnum.LIGHT) {
-      setTheme(ThemeEnum.DARK);
+    if (theme.current === ThemeEnum.LIGHT) {
+      theme.current = ThemeEnum.DARK;
       document.body.classList.add("dark");
     } else {
-      setTheme(ThemeEnum.LIGHT);
+      theme.current = ThemeEnum.LIGHT;
       document.body.classList.remove("dark");
     }
   };
