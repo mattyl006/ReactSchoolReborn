@@ -1,6 +1,6 @@
 import React from "react";
-import useThemeContext from "../../hooks/useThemeContext";
-import Button from "../Button";
+import useThemeContext from "../../../../hooks/useThemeContext";
+import Button from "../../../Button";
 
 type ThemeSwitcherProps = { className?: string };
 

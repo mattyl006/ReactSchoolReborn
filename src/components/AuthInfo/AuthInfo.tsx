@@ -5,7 +5,7 @@ import { HeaderType } from "../Header/enums/HeaderType";
 import { cn } from "../../utils/cn";
 import { AuthContextProvider } from "../../contexts/AuthContext/AuthContextProvider";
 import ThemeContextProvider from "../../contexts/ThemeContext/ThemeContextProvider";
-import ThemeSwitcher from "../ThemeSwitcher";
+import ThemeSwitcher from "./components/ThemeSwitcher";
 
 type AuthInfoProps = { className?: string };
 

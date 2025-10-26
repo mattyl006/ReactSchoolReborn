@@ -23,7 +23,11 @@ const Header: React.FC<HeaderProps> = (props) => {
       );
     default:
       return (
-        <h2 className={cn("text-[20px]", props.className)}>{props.children}</h2>
+        <h2
+          className={cn("text-[20px] dark:text-color-white", props.className)}
+        >
+          {props.children}
+        </h2>
       );
   }
 };

@@ -6,8 +6,10 @@ const useTheme = () => {
   const toggle = () => {
     if (theme === ThemeEnum.LIGHT) {
       setTheme(ThemeEnum.DARK);
+      document.body.classList.add("dark");
     } else {
       setTheme(ThemeEnum.LIGHT);
+      document.body.classList.remove("dark");
     }
   };
   return { theme, toggle };
