@@ -3,11 +3,12 @@ import useThemeContext from "../../../../hooks/useThemeContext";
 import Button from "../../../Button";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 import { ThemeEnum } from "../../../../contexts/ThemeContext/ThemeContext";
+import getMode from "./getMode";
 
 type ThemeSwitcherProps = { className?: string };
 
 const ThemeSwitcher: React.FC<ThemeSwitcherProps> = (props) => {
-  const [theme, setTheme] = useState(ThemeEnum.LIGHT);
+  const [theme, setTheme] = useState<ThemeEnum | null>(getMode());
   const { toggle } = useThemeContext();
 
   const handleClick = () => {
